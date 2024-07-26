@@ -18,10 +18,10 @@ export default function LoginPage() {
     try {
       await login(email, password);
       setError(null);
-      router.push("/home");  // Redirect to Home Page on success
+      router.push("/home");  
     } catch (error) {
-      setError("Invalid email or password.");  // Show error message
-      router.push("/login-error");  // Redirect to Login Error Page on failure
+      setError("Invalid email or password.");  
+      router.push("/login-error");  
     }
   };
 
@@ -110,7 +110,9 @@ export default function LoginPage() {
           <div>
             <button
               type="submit"
-              className="w-bw-md h-bh-md  btn-p"
+            className={`w-bw-md h-bh-md  btn-p ${
+                  error ? "btn-p" : "btn-inact"
+                }`}
             >
               Login
             </button>

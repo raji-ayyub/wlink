@@ -7,12 +7,25 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 type Link = {
+  id: number;
   platform: string;
   url: string;
 };
 
 export default function HomePage() {
+
+  // const [count, setCount] = useState<number>(0);
+  // const increment = () => {
+  //   setCount(count + 1);
+  // };
+
+
+
   const router = useRouter();
+
+
+
+
   const [activeTab, setActiveTab] = useState("links");
   const [links, setLinks] = useState<Link[]>([]);
   const [profileDetails, setProfileDetails] = useState({
@@ -22,8 +35,11 @@ export default function HomePage() {
     image: "/default-profile.png",
   });
 
+  let currentId = links.length;
+
   const addLink = () => {
-    setLinks([...links, { platform: "", url: "" }]);
+    
+    setLinks([...links, { id: currentId + 1, platform: "", url: "" }]);
   };
 
   const updateLink = (index: number, field: keyof Link, value: string) => {
@@ -34,6 +50,7 @@ export default function HomePage() {
   };
 
   const removeLink = (index: number) => {
+   
     setLinks(links.filter((_, i) => i !== index));
   };
 
@@ -52,6 +69,7 @@ export default function HomePage() {
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -172,25 +190,33 @@ export default function HomePage() {
 
 
         {/* Right Section: Customization Area */}
-        <div className=" w-full  lg:w-wx pl-8 bg-white ">
+        <div className=" w-full   lg:w-wx pl-8 bg-white ">
           {activeTab === "links" && (
             <>
               <h2 className="text-xl font-bold mt-12 mb-4">Customize your links</h2>
 
               <p className="lg:text-md md:text-md sm:text-xs mt-2 mb-6">Add/edit/remove links below and then share all your profiles with the world!</p>
+              <div className="">
               <input
                 className="w-wxx py-2 text-sm font-medium text-defaultp border border-defaultp rounded-md mt-5  hover:shadow-sm hover:bg-gray"
                 onClick={addLink}
                 value="+ Add New Link"
                 type="button"
               />
+              </div>
               
               
-              <div className=" w-wxx bg-gray mt-2 h-lhh space-y-4">
+              <div className=" w-wxx overflow-auto bg-gray mt-2 h-lhh space-y-4">
                 {links.map((link, index) => (
-                  <div key={index} className="flex items-center space-x-4">
+                  <div key={index} className="flex flex-col items-center space-x-4">
+                    
+                    <div className="w-wxx  items-center mt-4 flex justify-between ">
+                      <p>link #{ link.id }</p> <button className="text-smoked py-2" onClick={() => removeLink(index)}  >Remove</button>
+                    </div>
+                    
+                    <label className="text-left w-wxx mt-4 text-smoked">Platform</label>
                     <select
-                      className="mt-1 block w-1/3 px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      className="mt-1 block w-wxx px-3 py-2 border border-disabledp bg-white rounded-md hover:border-activep shadow-sm focus:outline-none focus:ring-indigo-500 focus:outline-defaultp sm:text-sm"
                       value={link.platform}
                       onChange={(e) => updateLink(index, "platform", e.target.value)}
                     >
@@ -200,20 +226,20 @@ export default function HomePage() {
                       <option value="LinkedIn">LinkedIn</option>
                       {/* Add more platforms here */}
                     </select>
-                    <input
-                      type="url"
-                      placeholder="Enter profile link"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm"
-                      value={link.url}
-                      onChange={(e) => updateLink(index, "url", e.target.value)}
-                      required
-                    />
-                    <button
-                      className="w-full  text-sm font-medium text-red-500"
-                      onClick={() => removeLink(index)}
-                    >
-                      Remove
-                    </button>
+
+                    <label className="text-left w-wxx mt-4 text-smoked">Link</label>
+                    
+                    <div className="mt-1 block bg-white  w-wxx px-3 py-2 border border-disabledp rounded-md shadow-sm placeholder-gray-400 hover:border-activep focus:outline-defaultp sm:text-sm">
+                      <input
+                        type="url"
+                        placeholder="Enter profile link"
+                        className=" block w-wxx  placeholder-gray-400 "
+                        value={link.url}
+                        onChange={(e) => updateLink(index, "url", e.target.value)}
+                        required
+                      />
+                    </div>
+                    
                   </div>
                 ))}
               </div>

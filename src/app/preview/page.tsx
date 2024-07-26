@@ -4,6 +4,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type Link = {
   platform: string;
@@ -12,7 +13,9 @@ type Link = {
 
 export default function PreviewPage() {
   const [links, setLinks] = useState<Link[]>([]);
+  const router = useRouter();
   const [profileDetails, setProfileDetails] = useState({
+
     firstName: "",
     lastName: "",
     email: "",
@@ -43,7 +46,7 @@ export default function PreviewPage() {
 
       <div className="w-full  rounded-xl bg-defaultp h-48">
         <div className="navbar rounded-xl mt-4 flex items-center justify-between px-3 w-wxx mx-auto py-2 bg-white">
-          <button className="border px-8  border-defaultp px-4 py-2 text-defaultp rounded-lg">Back to Editor</button>
+          <button onClick={() => router.push("/home")} className="border px-8  border-defaultp px-4 py-2 text-defaultp rounded-lg">Back to Editor</button>
           <button className="border bg-defaultp text-white px-4 py-2 rounded-lg">Share link</button>
         </div>
       </div>
