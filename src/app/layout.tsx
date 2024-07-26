@@ -4,6 +4,9 @@ import './globals.css';
 import { AuthProvider } from '../context/AuthContext';
 // import Nav from '../components/Nav';
 
+
+
+
 export default function RootLayout({
   children,
 }: {
