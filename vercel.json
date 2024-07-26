@@ -1,0 +1,41 @@
+{
+    "version": 2,
+    "routes": [
+      {
+        "src": "/",
+        "dest": "/login",
+        "status": 302
+      },
+      {
+        "src": "/login",
+        "dest": "/app/login",
+        "status": 200
+      },
+      {
+        "src": "/home",
+        "dest": "/app/home",
+        "status": 200
+      },
+      {
+        "src": "/signup",
+        "dest": "/app/signup",
+        "status": 200
+      },
+      {
+        "src": "/login-error",
+        "dest": "/app/login-error",
+        "status": 200
+      },
+      {
+        "src": "/signup-error",
+        "dest": "/app/signup-error",
+        "status": 200
+      },
+      {
+        "src": "/preview",
+        "dest": "/app/preview",
+        "status": 200
+      }
+    ]
+  }
+  
