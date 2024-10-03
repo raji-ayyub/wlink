@@ -155,8 +155,19 @@ export default function HomePage() {
             <div className="mobile-device-container relative flex items-center content-center">
 
               <div className="frame relative flex items-center justify-center">
-                <img className="w-mob-l" src="/images/fr1.png" />
-                <img className="w-mob absolute" src="/images/sub.png" />
+                <Image  
+                  className="w-mob-l" 
+                  width={200}
+                  
+                  alt="icon"
+                  src="/images/fr1.png" />
+
+                <Image 
+                 className="w-mob absolute" 
+                 src="/images/sub.png" 
+                 width={200}
+                 alt="icon"
+                 />
 
               </div>
 
