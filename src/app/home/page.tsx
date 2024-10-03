@@ -14,12 +14,6 @@ type Link = {
 
 export default function HomePage() {
 
-  // const [count, setCount] = useState<number>(0);
-  // const increment = () => {
-  //   setCount(count + 1);
-  // };
-
-
 
   const router = useRouter();
 
@@ -35,12 +29,16 @@ export default function HomePage() {
     image: "/default-profile.png",
   });
 
-  let currentId = links.length;
+  const [currentId, setCurrentId] = useState(0);
 
   const addLink = () => {
     
-    setLinks([...links, { id: currentId + 1, platform: "", url: "" }]);
-  };
+    setCurrentId(prevId => {
+      const newId = prevId + 1;
+      setLinks([...links, { id: newId, platform: "", url: "" }]);
+      return newId;
+    });
+    };
 
   const updateLink = (index: number, field: keyof Link, value: string) => {
     const updatedLinks = links.map((link, i) =>
@@ -50,8 +48,11 @@ export default function HomePage() {
   };
 
   const removeLink = (index: number) => {
-   
+    
     setLinks(links.filter((_, i) => i !== index));
+    setCurrentId(prevId => Math.max(0, prevId));
+    
+    
   };
 
   const handleProfileDetailChange = (field: string, value: string) => {
@@ -161,24 +162,52 @@ export default function HomePage() {
 
               <div className="profile  w-full  flex flex-col items-center  absolute top-12">
 
-                <div className="relative  w-cw mx-auto mt-8 h-ch bg-gray rounded-full mb-4">
+                <div className="relative  w-[8rem] mx-auto mt-8 h-[8rem] flex items-center justify-center bg-gray rounded-full overflow-hidden mb-4">
                   <Image
                     src={profileDetails.image}
                     alt="Profile"
-                    width={96}
-                    height={96}
-                    className="rounded-full"
+                    width={200}
+                    height={200}
+                    className="w-full"
                   />
                 </div>
 
-                <h3 className="text-xl bg-gray w-44 mt-2 h-6 font-bold">{profileDetails.firstName} {profileDetails.lastName}</h3>
-                <p className="text-gray-500 bg-gray w-28 h-4 my-4">{profileDetails.email}</p>
-                <div className="flex  bg-gray w-4/5 rounded-md h-14 mt-6 flex-col space-y-2">
-                  {links.map((link, index) => (
-                    <button key={index} className="px-3 py-1 bg-gray-200  rounded-md text-gray-700">
-                      {link.platform}
-                    </button>
-                  ))}
+                <h3 className="text-sm text-grey-200 bg-gray  min-w-48 h-[1.5rem] text-center mt-2  rounded  font-bold">{profileDetails.lastName} {profileDetails.firstName} </h3>
+                <p className="text-grey-200 text-sm bg-gray min-w-48 h-[1.5rem] overflow-x-auto  rounded my-4 mt-2">{profileDetails.email}</p>
+                
+
+
+                <div className="flex flex-col space-y-2  w-[80%]  h-[12rem] mt-2  relative">
+                   
+                   
+                   <div className="w-full h-[12rem]  flex flex-col space-y-2 overflow-auto relative top-0 left-0 z-20  ">
+                      {links.map((link, index) => (
+
+                      <div key={index} className="w-full h-[2.5rem] min-h-[2.5rem] flex flex-col z-20  ">
+                        <button  className="px-3 py-1 bg-blue-600 w-full h-full flex-auto   rounded-md text-white">
+                          {link.platform}
+                        </button>
+                      </div>
+
+                      ))}
+                   </div>
+
+                    <div  className="w-full h-[12rem]  flex flex-col space-y-2 absolute top-[-6px] left-0 z-10  ">
+                      <div  className="px-3 py-1 bg-gray w-full h-[2.5rem]   rounded-md text-white">
+                        
+                      </div>
+                      <div  className="px-3 py-1 bg-gray w-full h-[2.5rem]   rounded-md text-white">
+                        
+                      </div>
+                      <div  className="px-3 py-1 bg-gray w-full h-[2.5rem]  rounded-md text-white">
+                        
+                      </div>
+                      <div  className="px-3 py-1 bg-gray w-full h-[2.5rem]  rounded-md text-white">
+                        
+                      </div>
+                      
+                    </div>
+
                 </div>
               </div>
 

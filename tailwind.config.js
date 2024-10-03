@@ -15,7 +15,7 @@ module.exports = {
 
         black: "#333333",
         smoked: "#737373",
-        gray: "#FAFAFA",
+        gray: "#eeeeee",
         borders: "#D9D9D9"
       },
 
