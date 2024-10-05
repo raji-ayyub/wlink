@@ -84,15 +84,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray">
-      <header className="bg-gray shadow-sm">
+      <header className="bg-white shadow-sm">
         <div className="container bg-white mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <Image
               src="/images/logo.png"
               alt="App Logo"
-              width={40}
-              height={40}
-              className="mr-2 "
+              width={25}
+              height={25}
+              className="mr-2"
             />
             <span className="lg:text-2xl md:text-2xl text-sm font-bold">devlinks</span>
           </div>
@@ -106,8 +106,8 @@ export default function HomePage() {
               <Image
               src="/images/link.png"
               alt="App Logo"
-              width={15}
-              height={15}
+              width={20}
+              height={20}
               className="mr-2"
               />
               <p className="hidden md:flex lg:flex">Links</p>
@@ -122,8 +122,8 @@ export default function HomePage() {
               <Image
                 src="/images/profi.png"
                 alt="App Logo"
-                width={15}
-                height={15}
+                width={20}
+                height={20}
                 className="mr-2"
               />
 
@@ -158,14 +158,15 @@ export default function HomePage() {
                 <Image  
                   className="w-mob-l" 
                   width={200}
-                  
+                  height={200}
                   alt="icon"
                   src="/images/fr1.png" />
 
                 <Image 
                  className="w-mob absolute" 
                  src="/images/sub.png" 
-                 width={200}
+                 width={400}
+                 height={400}
                  alt="icon"
                  />
 
@@ -184,7 +185,7 @@ export default function HomePage() {
                 </div>
 
                 <h3 className="text-sm text-grey-200 bg-gray  min-w-48 h-[1.5rem] text-center mt-2  rounded  font-bold">{profileDetails.lastName} {profileDetails.firstName} </h3>
-                <p className="text-grey-200 text-sm bg-gray min-w-48 h-[1.5rem] overflow-x-auto  rounded my-4 mt-2">{profileDetails.email}</p>
+                <p className="text-grey-200 text-sm bg-gray min-w-48 h-[1.5rem] overflow-x-auto text-center  rounded my-4 mt-2">{profileDetails.email}</p>
                 
 
 
@@ -238,7 +239,7 @@ export default function HomePage() {
               <p className="lg:text-md md:text-md sm:text-xs mt-2 mb-6">Add/edit/remove links below and then share all your profiles with the world!</p>
               <div className="">
               <input
-                className="w-wxx py-2 text-sm font-medium text-defaultp border border-defaultp rounded-md mt-5  hover:shadow-sm hover:bg-gray"
+                className="w-wxx py-2 text-sm font-medium text-defaultp border border-defaultp cursor-pointer rounded-md mt-5 transition-all duration-500 ease  hover:shadow-sm hover:bg-gray"
                 onClick={addLink}
                 value="+ Add New Link"
                 type="button"
@@ -285,7 +286,7 @@ export default function HomePage() {
               </div>
 
               <input
-                className="mt-12 px-4 float-right mr-8  py-2 text-sm font-medium text-white bg-defaultp rounded-md shadow-sm hover:bg-activep"
+                className="mt-4 px-4 float-right mr-8  py-2 text-sm font-medium text-white bg-defaultp rounded-md shadow-sm hover:bg-activep"
                 onClick={handleSaveLinks}
                 value="Save"
                 type="button"

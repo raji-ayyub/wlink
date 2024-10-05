@@ -30,8 +30,8 @@ module.exports = {
         'bw-md': '98%',
 
 
-        'mob': '285px',
-        'mob-l': '307px',
+        'mob': '262px',
+        'mob-l': '280px',
 
 
         'wsm': '300px',
